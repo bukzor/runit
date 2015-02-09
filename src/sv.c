@@ -213,7 +213,7 @@ int checkscript() {
 int check(char *a) {
   unsigned int pid;
 
-  if ((r =svstatus_get()) == -1) return(-1);
+  if ((r =svstatus_get()) == -1) return(0);
   while (*a) {
     if (r == 0) { if (*a == 'x') return(1); return(-1); }
     pid =(unsigned char)svstatus[15];
