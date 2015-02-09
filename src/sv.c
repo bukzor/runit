@@ -227,7 +227,11 @@ int check(char *a) {
       if (!checkscript()) return(0);
       break;
     case 'd': if (pid || svstatus[19] != 0) return(0); break;
-    case 'C': if (pid) if (!checkscript()) return(0); break;
+    case 'C':
+      switch (svstatus[17]) {
+      case 'u': if (!pid || !checkscript()) return(0); break;
+      case 'd': if (pid) return(0); break;
+      }
     case 't':
     case 'k':
       if (!pid && svstatus[17] == 'd') break;
